@@ -2,18 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/index.php",
+      "src": "index.php",
       "use": "vercel-php@0.7.0"
     }
   ],
   "routes": [
     {
-      "src": "/(css|js|images|build)/(.*)",
+      "src": "/(build|css|js|images)/(.*)",
       "dest": "/public/$1/$2"
     },
     {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/api/index.php"
+      "dest": "/index.php"
     }
   ],
   "env": {
@@ -25,10 +29,15 @@
     "CACHE_STORE": "file",
     "QUEUE_CONNECTION": "sync",
     "LOG_CHANNEL": "stack",
-    "LOG_LEVEL": "error"
+    "LOG_LEVEL": "error",
+    "DB_CONNECTION": "sqlite",
+    "DB_DATABASE": ":memory:"
   },
   "functions": {
-    "api/index.php": {
+    "index.php": {
+      "runtime": "vercel-php@0.7.0"
+    },
+    "api/*.php": {
       "runtime": "vercel-php@0.7.0"
     }
   }
