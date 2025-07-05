@@ -3,25 +3,13 @@
   "builds": [
     {
       "src": "api/index.php",
-      "use": "vercel-php@0.6.0"
+      "use": "vercel-php@0.7.0"
     }
   ],
   "routes": [
     {
-      "src": "/build/(.*)",
-      "dest": "/public/build/$1"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "/public/images/$1"
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "/public/favicon.ico"
-    },
-    {
-      "src": "/robots.txt",
-      "dest": "/public/robots.txt"
+      "src": "/(css|js|images|build)/(.*)",
+      "dest": "/public/$1/$2"
     },
     {
       "src": "/(.*)",
@@ -31,12 +19,17 @@
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "false",
+    "APP_KEY": "base64:VQuaswEMbnGKGEQWFieSlr8N9TkPpAy22GNeAijIgOg=",
     "APP_URL": "https://shringacrm.vercel.app",
-    "VERCEL_PHP_VERSION": "8.2"
+    "SESSION_DRIVER": "file",
+    "CACHE_STORE": "file",
+    "QUEUE_CONNECTION": "sync",
+    "LOG_CHANNEL": "stack",
+    "LOG_LEVEL": "error"
   },
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.6.0"
+      "runtime": "vercel-php@0.7.0"
     }
   }
 } 
