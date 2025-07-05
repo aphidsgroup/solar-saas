@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styling for sticky table headers */
+@layer components {
+  .sticky-table-header thead {
+    @apply sticky top-[8rem] bg-white z-10 shadow-sm;
+  }
+  
+  .sticky-table-header thead::after {
+    content: '';
+    @apply absolute left-0 right-0 bottom-0 border-b border-gray-200;
+  }
+}
